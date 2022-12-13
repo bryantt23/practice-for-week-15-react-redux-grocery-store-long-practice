@@ -1,19 +1,22 @@
+import { addItem } from '../../store/cart';
+import { useDispatch } from 'react-redux';
+
 function ProduceDetails({ produce }) {
+  const dispatch = useDispatch();
   const cartItem = {};
 
   return (
-    <li className="produce-details">
+    <li className='produce-details'>
       <span>{produce.name}</span>
       <span>
-        <button
-          className={"like-button" + (produce.liked ? " selected" : "")}
-        >
-          <i className={"fas fa-heart"} />
+        <button className={'like-button' + (produce.liked ? ' selected' : '')}>
+          <i className={'fas fa-heart'} />
         </button>
         <button
-          className={"plus-button" + (cartItem ? " selected" : "")}
+          className={'plus-button' + (cartItem ? ' selected' : '')}
+          onClick={() => dispatch(addItem(produce))}
         >
-          <i className="fas fa-plus" />
+          <i className='fas fa-plus' />
         </button>
       </span>
     </li>
