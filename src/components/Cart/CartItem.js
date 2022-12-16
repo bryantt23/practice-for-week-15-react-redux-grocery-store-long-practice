@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeItem } from '../../store/cart';
+import {
+  removeItem,
+  increaseItemCount,
+  decreaseItemCount
+} from '../../store/cart';
 
 function CartItem({ item }) {
   const [count, setCount] = useState(item.count);
@@ -15,9 +19,23 @@ function CartItem({ item }) {
       {JSON.stringify(item)}
       <div className='cart-item-header'>{item.name}</div>
       <div className='cart-item-menu'>
-        <input type='number' value={count} />
-        <button className='cart-item-button'>+</button>
-        <button className='cart-item-button'>-</button>
+        <input type='number' readOnly value={count} />
+        <button
+          onClick={() => {
+            dispatch(increaseItemCount(item.id));
+          }}
+          className='cart-item-button'
+        >
+          +
+        </button>
+        <button
+          onClick={() => {
+            dispatch(decreaseItemCount(item.id));
+          }}
+          className='cart-item-button'
+        >
+          -
+        </button>
         <button
           onClick={() => {
             dispatch(removeItem(item.id));
