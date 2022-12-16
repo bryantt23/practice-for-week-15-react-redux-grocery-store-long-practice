@@ -2,6 +2,7 @@ export const ADD_ITEM = 'cart/ADD_ITEM';
 export const REMOVE_ITEM = 'cart/REMOVE_ITEM';
 export const INCREASE_ITEM_COUNT = 'cart/INCREASE_ITEM_COUNT';
 export const DECREASE_ITEM_COUNT = 'cart/DECREASE_ITEM_COUNT';
+export const PURCHASE = 'cart/PURCHASE';
 
 export const addItem = item => {
   return {
@@ -28,6 +29,12 @@ export const decreaseItemCount = id => {
   return {
     type: DECREASE_ITEM_COUNT,
     id
+  };
+};
+
+export const purchase = () => {
+  return {
+    type: PURCHASE
   };
 };
 
@@ -59,6 +66,9 @@ export default function cartReducer(state = {}, action) {
         delete stateCopy[action.id];
       }
       return stateCopy;
+    }
+    case PURCHASE: {
+      return {};
     }
     default:
       return state;
