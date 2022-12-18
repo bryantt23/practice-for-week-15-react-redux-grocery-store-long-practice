@@ -3,7 +3,7 @@ import './ProduceList.css';
 import { useSelector } from 'react-redux';
 import { getAllProduce } from '../../store/produce';
 
-function ProduceList() {
+function ProduceList({ setShowCart }) {
   const produceArr = useSelector(getAllProduce);
 
   return (
@@ -12,7 +12,11 @@ function ProduceList() {
       {!produceArr.length && <span>No produce available right now.</span>}
       <ul className='produce-list'>
         {produceArr.map(produce => (
-          <ProduceDetails key={produce.id} produce={produce} />
+          <ProduceDetails
+            key={produce.id}
+            produce={produce}
+            setShowCart={setShowCart}
+          />
         ))}
       </ul>
     </>
