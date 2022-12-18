@@ -45,15 +45,51 @@ export default function cartReducer(state = {}, action) {
     case ADD_ITEM: {
       const stateCopy = JSON.parse(JSON.stringify(state));
       const { id, name } = action.item;
-      if (!stateCopy[id]) {
-        stateCopy[id] = { count: 0, name, id };
+
+      const orderArray = [];
+      for (const item of Object.values(stateCopy)) {
+        orderArray.push(item.id);
       }
-      stateCopy[id].count++;
-      return stateCopy;
+
+      console.log(
+        '🚀 ~ file: cart.js:51 ~ cartReducer ~ orderArray',
+        orderArray
+      );
+
+      let targetObject = Object.values(stateCopy).find(item => item.id === id);
+      if (!targetObject) {
+        targetObject = { count: 1, name, id };
+        orderArray.push(id);
+      } else {
+        targetObject.count++;
+      }
+
+      const returnObject = {};
+      let i = 0;
+      for (const id of orderArray) {
+        const targetObjectForReturnObject = Object.values(stateCopy).find(
+          item => item.id === id
+        );
+        // doesn't exist because it is the first object
+        if (!targetObjectForReturnObject) {
+          returnObject[i++] = targetObject;
+        } else {
+          returnObject[i++] = targetObjectForReturnObject;
+        }
+      }
+
+      return returnObject;
     }
     case REMOVE_ITEM: {
       const stateCopy = JSON.parse(JSON.stringify(state));
-      delete stateCopy[action.id];
+      let keyToRemove;
+      for (const key in stateCopy) {
+        const val = stateCopy[key];
+        if (val.id === action.id) {
+          keyToRemove = key;
+        }
+      }
+      delete stateCopy[keyToRemove];
       return stateCopy;
     }
     case INCREASE_ITEM_COUNT: {
