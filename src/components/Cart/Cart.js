@@ -13,8 +13,7 @@ function Cart() {
 
   const cartItems = Object.values(cart).map(item => {
     return {
-      ...item,
-      ...produce[item.id]
+      ...item
     };
   });
 

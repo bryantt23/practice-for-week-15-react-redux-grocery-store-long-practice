@@ -3,10 +3,6 @@ import { useDispatch } from 'react-redux';
 import { toggleLike } from '../../store/produce';
 
 function ProduceDetails({ produce }) {
-  console.log(
-    '🚀 ~ file: ProduceDetails.js:5 ~ ProduceDetails ~ produce',
-    produce
-  );
   const dispatch = useDispatch();
   const cartItem = {};
 

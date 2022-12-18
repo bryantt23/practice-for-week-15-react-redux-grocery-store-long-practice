@@ -7,6 +7,7 @@ import {
 } from '../../store/cart';
 
 function CartItem({ item }) {
+  console.log('🚀 ~ file: CartItem.js:10 ~ CartItem ~ item', item);
   const [count, setCount] = useState(item.count);
   const dispatch = useDispatch();
 
