@@ -2,6 +2,8 @@ import produceData from '../mockData/produce.json';
 export const POPULATE = 'produce/POPULATE';
 export const TOGGLE_LIKE = 'produce/TOGGLE_LIKE';
 
+export const getAllProduce = state => Object.values(state.produce);
+
 export const toggleLike = id => {
   return {
     type: TOGGLE_LIKE,
