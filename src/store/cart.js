@@ -4,6 +4,8 @@ export const INCREASE_ITEM_COUNT = 'cart/INCREASE_ITEM_COUNT';
 export const DECREASE_ITEM_COUNT = 'cart/DECREASE_ITEM_COUNT';
 export const PURCHASE = 'cart/PURCHASE';
 
+export const getAllCartItems = state => Object.values(state.cart);
+
 export const addItem = item => {
   return {
     type: ADD_ITEM,

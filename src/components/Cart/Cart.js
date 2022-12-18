@@ -3,10 +3,12 @@ import './Cart.css';
 import { useSelector } from 'react-redux';
 import { purchase } from '../../store/cart';
 import { useDispatch } from 'react-redux';
+import { getAllProduce } from '../../store/produce';
+import { getAllCartItems } from '../../store/cart';
 
 function Cart() {
-  const cart = useSelector(state => state.cart);
-  const produce = useSelector(state => state.produce);
+  const cart = useSelector(getAllCartItems);
+  const produce = useSelector(getAllProduce);
   const dispatch = useDispatch();
 
   const cartItems = Object.values(cart).map(item => {
